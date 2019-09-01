@@ -10,8 +10,6 @@ const App = () => {
 		setUrl(url)
 	}
 
-	console.log(`api key ${process.env.API_TOKEN}`)
-
 	return (
 		<div style={{ padding: 20 }}>
 			<URLShortener updateUrl={updateUrl} />
