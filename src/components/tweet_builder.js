@@ -1,17 +1,20 @@
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect, Fragment } from "react"
 import { string } from "prop-types"
 import { CopyToClipboard } from "react-copy-to-clipboard"
 import URLShortener from "./url_shortener"
 
+import { Icon } from "react-icons-kit"
+import { check } from "react-icons-kit/fa/check"
+
 const TweetBuilder = () => {
 	const [url, setUrl] = useState("")
 	const [tweet, setTweet] = useState("")
+	const [user, setUser] = useState("@StevenPHenke")
 	const [copied, setCopied] = useState(false)
 	const [shortcode, setShortcode] = useState("")
 	const [includeUrl, setIncludeUrl] = useState(false)
 	const [includeHandle, setIncludeHandle] = useState(false)
 
-	const user = "@StevenPHenke"
 	const userLength = includeHandle ? user.length : 0
 	const tweetLength = tweet.length
 	const urlLength = includeUrl ? url.length : 0
@@ -26,9 +29,9 @@ const TweetBuilder = () => {
 	})
 
 	const characterLimitInidicator = () => {
-		if (charactersRemaining > 15) {
+		if (charactersRemaining >= 15) {
 			return "status--ok"
-		} else if (charactersRemaining < 10 && charactersRemaining > 0) {
+		} else if (charactersRemaining < 15 && charactersRemaining > 0) {
 			return "status--warning"
 		} else {
 			return "status--error"
@@ -37,10 +40,10 @@ const TweetBuilder = () => {
 
 	const renderUrl = () => {
 		let result
-		if (includeUrl) {
-			result = ` url="${url}`
+		if (includeUrl && url) {
+			result = ` url="${url}"`
 		} else {
-			result = null
+			result = ` url="no"`
 		}
 		return result
 	}
@@ -50,58 +53,92 @@ const TweetBuilder = () => {
 		if (includeHandle) {
 			result = ` via="${user}"`
 		} else {
-			result = null
+			result = ` via="no"`
 		}
 		return result
 	}
 
+	const renderCopyButtonText = () => {
+		if (copied) {
+			return (
+				<Fragment>
+					Copied <Icon icon={check} />
+				</Fragment>
+			)
+		} else {
+			return "Copy to Clipboard"
+		}
+	}
+
+	const updateUser = e => {
+		setUser(e.target.value)
+	}
+
+	const handleCopyClick = () => {
+		setCopied(true)
+		setTimeout(() => setCopied(false), 2500)
+	}
+
 	return (
 		<div>
-			<URLShortener setUrl={setUrl} />
-
-			<textarea value={tweet} onChange={e => setTweet(e.target.value)} />
-
-			<br />
-			<br />
-			<input
-				type="checkbox"
-				id="showURL"
-				onChange={() => setIncludeUrl(!includeUrl)}
+			<label className="mb-1">Tweet Body</label>
+			<textarea
+				value={tweet}
+				onChange={e => setTweet(e.target.value)}
+				className="mb-0"
 			/>
-			<label htmlFor="showURL">Show URL?</label>
 
-			<br />
-			<br />
-			<input
-				type="checkbox"
-				id="showUser"
-				onChange={() => setIncludeHandle(!includeHandle)}
-			/>
-			<label htmlFor="showUser">Show User?</label>
+			<div className={`character-count ${characterLimitInidicator()} mb-3`}>
+				remaining characters:
+				<span className="ml-4p fw-b">{charactersRemaining}</span>
+			</div>
 
-			<br />
-			<br />
+			<div className="d-f fd-r ai-c jc-fs mb-2">
+				<input
+					type="checkbox"
+					id="showURL"
+					onChange={() => setIncludeUrl(!includeUrl)}
+				/>
+				<label htmlFor="showURL">Show URL?</label>
+			</div>
+
+			{includeUrl && (
+				<URLShortener setUrl={setUrl} url={url} className="mb-3" />
+			)}
+
+			<div className="d-f fd-r ai-c jc-fs mb-2">
+				<input
+					type="checkbox"
+					id="showUser"
+					onChange={() => setIncludeHandle(!includeHandle)}
+				/>
+				<label htmlFor="showUser">Show User?</label>
+			</div>
+
+			{includeHandle && (
+				<input
+					className="d-b w-100% mb-3"
+					type="text"
+					value={user}
+					onChange={updateUser}
+				/>
+			)}
+
 			<div
-				style={{ background: "#ececec", padding: 16, borderRadius: 4 }}
+				className={`shortcode-preview ${!tweet ? "hidden" : "mb-2"}`}
 				ref={shortcodeElem}
 			>
 				[bctt tweet="{tweet}"{renderUrl()}
 				{renderUsername()}]
 			</div>
 
-			<br />
-			<CopyToClipboard text={shortcode} onCopy={() => setCopied(true)}>
-				<button>{!copied ? "Copy" : "Copied!"}</button>
+			<CopyToClipboard text={shortcode} onCopy={handleCopyClick}>
+				<button
+					className={`btn btn-lg ${copied ? "btn-success" : "btn-primary"}`}
+				>
+					{renderCopyButtonText()}
+				</button>
 			</CopyToClipboard>
-
-			<br />
-			<br />
-			<div>
-				<strong>remaining characters: </strong>
-				<span className={`characterCount ${characterLimitInidicator()}`}>
-					{charactersRemaining}
-				</span>
-			</div>
 		</div>
 	)
 }

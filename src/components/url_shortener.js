@@ -1,12 +1,13 @@
 import React from "react"
-import { func } from "prop-types"
+import { func, string } from "prop-types"
 
 class URLShortener extends React.Component {
 	state = {
-		initialUrl: "",
+		initialUrl: this.props.url || "",
 		encodedUrl: "",
 		longUrl: "",
 		shortUrl: "",
+		error: "",
 	}
 
 	getShortURL = () => {
@@ -37,13 +38,23 @@ class URLShortener extends React.Component {
 	}
 
 	render() {
+		const debug = false
+
 		return (
-			<div>
+			<div className={this.props.className}>
 				<input
 					value={this.state.initialUrl}
 					onChange={this.handleInputChange}
+					type="text"
+					className="d-b w-100%"
 				/>
-				<button onClick={this.getShortURL}>Get Short URL</button>
+				<button
+					onClick={this.getShortURL}
+					className="btn btn-primary btn-md mt-1"
+					disabled={this.state.encodedUrl === ""}
+				>
+					Get Short URL
+				</button>
 				{this.state.shortUrl && (
 					<p>
 						short url:{" "}
@@ -56,6 +67,15 @@ class URLShortener extends React.Component {
 						</a>
 					</p>
 				)}
+
+				{debug && (
+					<div>
+						<p>initialUrl: {this.state.initialUrl}</p>
+						<p>encodedUrl: {this.state.encodedUrl}</p>
+						<p>longUrl: {this.state.longUrl}</p>
+						<p>shortUrl: {this.state.shortUrl}</p>
+					</div>
+				)}
 			</div>
 		)
 	}
@@ -63,6 +83,12 @@ class URLShortener extends React.Component {
 
 URLShortener.propTypes = {
 	setUrl: func,
+	className: string,
+	url: string,
+}
+
+URLShortener.defaultProps = {
+	className: "",
 }
 
 export default URLShortener
