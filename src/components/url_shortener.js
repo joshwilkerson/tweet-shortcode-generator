@@ -22,7 +22,7 @@ class URLShortener extends React.Component {
 					shortUrl: data.data.url,
 					longUrl: data.data.long_url,
 				})
-				this.props.updateUrl(this.state.shortUrl)
+				this.props.setUrl(this.state.shortUrl)
 			})
 			.catch(error => {
 				this.setState({ error: error })
@@ -38,14 +38,7 @@ class URLShortener extends React.Component {
 
 	render() {
 		return (
-			<div
-				style={{
-					display: "block",
-					border: "1px solid #dadada",
-					padding: 16,
-					margin: 16,
-				}}
-			>
+			<div>
 				<input
 					value={this.state.initialUrl}
 					onChange={this.handleInputChange}
@@ -69,7 +62,7 @@ class URLShortener extends React.Component {
 }
 
 URLShortener.propTypes = {
-	updateUrl: func,
+	setUrl: func,
 }
 
 export default URLShortener

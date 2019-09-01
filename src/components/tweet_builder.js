@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react"
 import { string } from "prop-types"
 import { CopyToClipboard } from "react-copy-to-clipboard"
+import URLShortener from "./url_shortener"
 
-const TweetBuilder = ({ url }) => {
+const TweetBuilder = () => {
+	const [url, setUrl] = useState("")
 	const [tweet, setTweet] = useState("")
 	const [copied, setCopied] = useState(false)
 	const [shortcode, setShortcode] = useState("")
@@ -54,15 +56,9 @@ const TweetBuilder = ({ url }) => {
 	}
 
 	return (
-		<div
-			style={{
-				display: "block",
-				border: "1px solid #dadada",
-				padding: 16,
-				margin: 16,
-			}}
-		>
-			<p>Tweet:</p>
+		<div>
+			<URLShortener setUrl={setUrl} />
+
 			<textarea value={tweet} onChange={e => setTweet(e.target.value)} />
 
 			<br />
