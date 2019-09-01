@@ -1,13 +1,14 @@
 import React from "react"
+import Layout from "./layout"
 import Intro from "./intro"
 import TweetBuilder from "./tweet_builder"
 
 const App = () => {
 	return (
-		<div style={{ padding: 20 }}>
+		<Layout>
 			<Intro />
 			<TweetBuilder />
-		</div>
+		</Layout>
 	)
 }
 

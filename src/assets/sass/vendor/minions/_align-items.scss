@@ -1,0 +1,45 @@
+.ai-b { align-items: baseline }
+.ai-c { align-items: center }
+.ai-fe { align-items: flex-end }
+.ai-fs { align-items: flex-start }
+.ai-s { align-items: stretch }
+
+@include breakpoints(from-xs) {
+  .ai-b\@xs { align-items: baseline }
+  .ai-c\@xs { align-items: center }
+  .ai-fe\@xs { align-items: flex-end }
+  .ai-fs\@xs { align-items: flex-start }
+  .ai-s\@xs { align-items: stretch }
+}
+
+@include breakpoints(from-sm) {
+  .ai-b\@sm { align-items: baseline }
+  .ai-c\@sm { align-items: center }
+  .ai-fe\@sm { align-items: flex-end }
+  .ai-fs\@sm { align-items: flex-start }
+  .ai-s\@sm { align-items: stretch }
+}
+
+@include breakpoints(from-med) {
+  .ai-b\@md { align-items: baseline }
+  .ai-c\@md { align-items: center }
+  .ai-fe\@md { align-items: flex-end }
+  .ai-fs\@md { align-items: flex-start }
+  .ai-s\@md { align-items: stretch }
+}
+
+@include breakpoints(from-lg) {
+  .ai-b\@lg { align-items: baseline }
+  .ai-c\@lg { align-items: center }
+  .ai-fe\@lg { align-items: flex-end }
+  .ai-fs\@lg { align-items: flex-start }
+  .ai-s\@lg { align-items: stretch }
+}
+
+@include breakpoints(from-xl) {
+  .ai-b\@xl { align-items: baseline }
+  .ai-c\@xl { align-items: center }
+  .ai-fe\@xl { align-items: flex-end }
+  .ai-fs\@xl { align-items: flex-start }
+  .ai-s\@xl { align-items: stretch }
+}

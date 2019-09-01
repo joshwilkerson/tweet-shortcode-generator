@@ -19,6 +19,7 @@
   },
   "dependencies": {
     "gh-pages": "^2.1.1",
+    "minions.css": "^0.3.2",
     "react": "^15.3.0 || ^16.0.0",
     "react-copy-to-clipboard": "^5.0.1",
     "react-dom": "^16.2.0",

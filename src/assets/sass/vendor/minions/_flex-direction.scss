@@ -1,0 +1,39 @@
+.fd-c { flex-direction: column }
+.fd-cr { flex-direction: column-reverse }
+.fd-r { flex-direction: row }
+.fd-rr { flex-direction: row-reverse }
+
+@include breakpoints(from-xs) {
+  .fd-c\@xs { flex-direction: column }
+  .fd-cr\@xs { flex-direction: column-reverse }
+  .fd-r\@xs { flex-direction: row }
+  .fd-rr\@xs { flex-direction: row-reverse }
+}
+
+@include breakpoints(from-sm) {
+  .fd-c\@sm { flex-direction: column }
+  .fd-cr\@sm { flex-direction: column-reverse }
+  .fd-r\@sm { flex-direction: row }
+  .fd-rr\@sm { flex-direction: row-reverse }
+}
+
+@include breakpoints(from-med) {
+  .fd-c\@md { flex-direction: column }
+  .fd-cr\@md { flex-direction: column-reverse }
+  .fd-r\@md { flex-direction: row }
+  .fd-rr\@md { flex-direction: row-reverse }
+}
+
+@include breakpoints(from-lg) {
+  .fd-c\@lg { flex-direction: column }
+  .fd-cr\@lg { flex-direction: column-reverse }
+  .fd-r\@lg { flex-direction: row }
+  .fd-rr\@lg { flex-direction: row-reverse }
+}
+
+@include breakpoints(from-xl) {
+  .fd-c\@xl { flex-direction: column }
+  .fd-cr\@xl { flex-direction: column-reverse }
+  .fd-r\@xl { flex-direction: row }
+  .fd-rr\@xl { flex-direction: row-reverse }
+}

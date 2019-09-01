@@ -1,0 +1,140 @@
+.c-gray_900 { color: $gray_900 }
+.c-gray_800 { color: $gray_800 }
+.c-gray_700 { color: $gray_700 }
+.c-gray_600 { color: $gray_600 }
+.c-gray_500 { color: $gray_500 }
+.c-gray_400 { color: $gray_400 }
+.c-gray_300 { color: $gray_300 }
+.c-gray_200 { color: $gray_200 }
+.c-gray_100 { color: $gray_100 }
+.c-gray_50 { color: $gray_50 }
+.c-gray_25 { color: $gray_25 }
+
+.c-white { color: #fff }
+
+// ========= margin/padding =========
+.mt-1p { margin-top: 1px }
+.mt-2p { margin-top: 2px }
+.mt-3p { margin-top: 3px }
+.mt-4p { margin-top: 4px }
+.mr-1p { margin-right: 1px }
+.mr-2p { margin-right: 2px }
+.mr-3p { margin-right: 3px }
+.mr-4p { margin-right: 4px }
+.mb-1p { margin-bottom: 1px }
+.mb-2p { margin-bottom: 2px }
+.mb-3p { margin-bottom: 3px }
+.mb-4p { margin-bottom: 4px }
+.ml-1p { margin-left: 1px }
+.ml-2p { margin-left: 2px }
+.ml-3p { margin-left: 3px }
+.ml-4p { margin-left: 4px }
+
+.pt-1p { padding-top: 1px }
+.pt-2p { padding-top: 2px }
+.pt-3p { padding-top: 3px }
+.pt-4p { padding-top: 4px }
+.pr-1p { padding-right: 1px }
+.pr-2p { padding-right: 2px }
+.pr-3p { padding-right: 3px }
+.pr-4p { padding-right: 4px }
+.pb-1p { padding-bottom: 1px }
+.pb-2p { padding-bottom: 2px }
+.pb-3p { padding-bottom: 3px }
+.pb-4p { padding-bottom: 4px }
+.pl-1p { padding-left: 1px }
+.pl-2p { padding-left: 2px }
+.pl-3p { padding-left: 3px }
+.pl-4p { padding-left: 4px }
+
+.ml-a { margin-left: auto }
+.mr-a { margin-right: auto }
+
+.mx-a {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.mx-1p {
+  margin-left: 1px;
+  margin-right: 1px;
+}
+
+.mx-2p {
+  margin-left: 2px;
+  margin-right: 2px;
+}
+
+.mx-3p {
+  margin-left: 3px;
+  margin-right: 3px;
+}
+
+.mx-4p {
+  margin-left: 4px;
+  margin-right: 4px;
+}
+
+.my-1p {
+  margin-top: 1px;
+  margin-bottom: 1px;
+}
+
+.my-2p {
+  margin-top: 2px;
+  margin-bottom: 2px;
+}
+
+.my-3p {
+  margin-top: 3px;
+  margin-bottom: 3px;
+}
+
+.my-4p {
+  margin-top: 4px;
+  margin-bottom: 4px;
+}
+
+.px-1p {
+  padding-left: 1px;
+  padding-right: 1px;
+}
+
+.px-2p {
+  padding-left: 2px;
+  padding-right: 2px;
+}
+
+.px-3p {
+  padding-left: 3px;
+  padding-right: 3px;
+}
+
+.px-4p {
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+.py-1p {
+  padding-top: 1px;
+  padding-bottom: 1px;
+}
+
+.py-2p {
+  padding-top: 2px;
+  padding-bottom: 2px;
+}
+
+.py-3p {
+  padding-top: 3px;
+  padding-bottom: 3px;
+}
+
+.py-4p {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+
+.w-100\% { width: 100% }
+.fw-b { font-weight: bold}

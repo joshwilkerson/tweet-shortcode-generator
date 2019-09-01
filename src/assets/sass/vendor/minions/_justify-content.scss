@@ -1,0 +1,45 @@
+.jc-c { justify-content: center }
+.jc-fe { justify-content: flex-end }
+.jc-fs { justify-content: flex-start }
+.jc-sb { justify-content: space-between }
+.jc-sa { justify-content: space-around }
+
+@include breakpoints(from-xs) {
+  .jc-c\@xs { justify-content: center }
+  .jc-fe\@xs { justify-content: flex-end }
+  .jc-fs\@xs { justify-content: flex-start }
+  .jc-sb\@xs { justify-content: space-between }
+  .jc-sa\@xs { justify-content: space-around }
+}
+
+@include breakpoints(from-sm) {
+  .jc-c\@sm { justify-content: center }
+  .jc-fe\@sm { justify-content: flex-end }
+  .jc-fs\@sm { justify-content: flex-start }
+  .jc-sb\@sm { justify-content: space-between }
+  .jc-sa\@sm { justify-content: space-around }
+}
+
+@include breakpoints(from-med) {
+  .jc-c\@md { justify-content: center }
+  .jc-fe\@md { justify-content: flex-end }
+  .jc-fs\@md { justify-content: flex-start }
+  .jc-sb\@md { justify-content: space-between }
+  .jc-sa\@md { justify-content: space-around }
+}
+
+@include breakpoints(from-lg) {
+  .jc-c\@lg { justify-content: center }
+  .jc-fe\@lg { justify-content: flex-end }
+  .jc-fs\@lg { justify-content: flex-start }
+  .jc-sb\@lg { justify-content: space-between }
+  .jc-sa\@lg { justify-content: space-around }
+}
+
+@include breakpoints(from-xl) {
+  .jc-c\@xl { justify-content: center }
+  .jc-fe\@xl { justify-content: flex-end }
+  .jc-fs\@xl { justify-content: flex-start }
+  .jc-sb\@xl { justify-content: space-between }
+  .jc-sa\@xl { justify-content: space-around }
+}
