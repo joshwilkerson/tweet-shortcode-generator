@@ -15,7 +15,7 @@
     "prebuild": "rm -rf dist",
     "build": "cross-env NODE_ENV=production parcel build src/index.html --no-minify --public-url /",
     "predeploy": "rm -rf dist && parcel build src/index.html --public-url /tweet-shortcode-generator",
-    "deploy": "gh-pages -d dist"
+    "deploy": "echo \"https://joshwilkerson.github.io/tweet-shortcode-generator/\" && gh-pages -d dist"
   },
   "dependencies": {
     "gh-pages": "^2.1.1",
