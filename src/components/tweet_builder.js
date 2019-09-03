@@ -7,6 +7,11 @@ import { Icon } from "react-icons-kit"
 import { check } from "react-icons-kit/fa/check"
 
 const TweetBuilder = () => {
+	const debug = false
+
+	const ls_save_username = localStorage.getItem("bctt_save_username") === "true"
+	const ls_username = localStorage.getItem("bctt_username")
+
 	const [tweet, setTweet] = useState("")
 
 	const [includeUrl, setIncludeUrl] = useState(false)
@@ -16,7 +21,10 @@ const TweetBuilder = () => {
 	const [shortUrlLength, setShortUrlLength] = useState(0)
 
 	const [includeUsername, setIncludeUsername] = useState(false)
-	const [username, setUsername] = useState("")
+	const [username, setUsername] = useState(
+		ls_username != null && ls_save_username ? ls_username : ""
+	)
+	const [saveUsername, setSaveUsername] = useState(false)
 
 	const [includePrompt, setIncludePrompt] = useState(false)
 	const [prompt, setPrompt] = useState("Click to Tweet")
@@ -121,13 +129,32 @@ const TweetBuilder = () => {
 		}
 	}
 
+	const handleUpdateUsername = e => {
+		setUsername(e.target.value)
+		localStorage.setItem("bctt_username", e.target.value)
+	}
+
+	const handleSaveUsername = () => {
+		if (saveUsername) {
+			setSaveUsername(false)
+			localStorage.setItem("bctt_save_username", "false")
+		} else {
+			setSaveUsername(true)
+			localStorage.setItem("bctt_save_username", "true")
+		}
+	}
+
 	let shortcodeElem = React.createRef()
 
 	useEffect(() => {
+		localStorage.setItem(
+			"bctt_save_username",
+			ls_save_username ? ls_save_username : false
+		)
+
+		setSaveUsername(ls_save_username ? ls_save_username : false)
 		setShortcode(shortcodeElem.current.innerHTML)
 	})
-
-	const debug = false
 
 	return (
 		<div className="tweet-builder">
@@ -205,10 +232,21 @@ const TweetBuilder = () => {
 					<input
 						type="text"
 						value={username}
-						onChange={e => setUsername(e.target.value)}
+						onChange={handleUpdateUsername}
 						className="d-b w-100%"
 						placeholder="Username"
 					/>
+					<div className="mt-2">
+						<input
+							type="checkbox"
+							className="checkbox checkbox-sm"
+							id="saveUsername"
+							value={saveUsername}
+							checked={saveUsername}
+							onChange={handleSaveUsername}
+						/>
+						<label htmlFor="saveUsername">Remember me?</label>
+					</div>
 				</div>
 			)}
 
@@ -266,6 +304,9 @@ const TweetBuilder = () => {
 					<span className="d-b">shortUrl: {shortUrl}</span>
 					<span className="d-b">
 						includeUsername: {includeUsername ? "true" : "false"}
+					</span>
+					<span className="d-b">
+						saveUsername: {saveUsername ? "true" : "false"}
 					</span>
 					<span className="d-b">username: {username}</span>
 					<span className="d-b">
