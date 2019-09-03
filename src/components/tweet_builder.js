@@ -247,6 +247,7 @@ const TweetBuilder = () => {
 			<CopyToClipboard text={shortcode} onCopy={handleCopyClick}>
 				<button
 					className={`btn btn-lg ${copied ? "btn-success" : "btn-primary"}`}
+					disabled={!tweet}
 				>
 					{renderCopyButtonText()}
 				</button>
