@@ -132,7 +132,11 @@ const TweetBuilder = () => {
 	return (
 		<div className="tweet-builder">
 			<label className="mb-1">Tweet Body</label>
-			<textarea value={tweet} onChange={e => setTweet(e.target.value)} />
+			<textarea
+				value={tweet}
+				onChange={e => setTweet(e.target.value)}
+				placeholder="Paste tweet text here..."
+			/>
 
 			<div className={`character-count ${characterCountStatus()} mb-1`}>
 				remaining characters:
@@ -152,12 +156,14 @@ const TweetBuilder = () => {
 			</div>
 
 			{includeUrl && (
-				<div>
+				<div className="content-well">
+					<label>URL</label>
 					<input
 						type="text"
 						value={url}
 						onChange={handleUpdateUrl}
 						className="d-b w-100% mb-2"
+						placeholder="URL"
 					/>
 					<div className="d-f ai-c">
 						<input
@@ -194,12 +200,16 @@ const TweetBuilder = () => {
 			</div>
 
 			{includeUsername && (
-				<input
-					type="text"
-					value={username}
-					onChange={e => setUsername(e.target.value)}
-					className="d-b w-100%"
-				/>
+				<div className="content-well">
+					<label>Username</label>
+					<input
+						type="text"
+						value={username}
+						onChange={e => setUsername(e.target.value)}
+						className="d-b w-100%"
+						placeholder="Username"
+					/>
+				</div>
 			)}
 
 			<div className="d-f fd-r ai-c jc-fs my-2">
@@ -215,16 +225,20 @@ const TweetBuilder = () => {
 			</div>
 
 			{includePrompt && (
-				<input
-					type="text"
-					value={prompt}
-					onChange={e => setPrompt(e.target.value)}
-					className="d-b w-100%"
-				/>
+				<div className="content-well">
+					<label>Custom prompt</label>
+					<input
+						type="text"
+						value={prompt}
+						onChange={e => setPrompt(e.target.value)}
+						className="d-b w-100%"
+						placeholder="Enter custom prompt text"
+					/>
+				</div>
 			)}
 
 			<div
-				className={`shortcode-preview ${!tweet ? "hidden" : "my-2"}`}
+				className={`shortcode-preview mt-2 ${!tweet ? "hidden" : "mb-2"}`}
 				ref={shortcodeElem}
 			>
 				{renderShortcodePreview()}
