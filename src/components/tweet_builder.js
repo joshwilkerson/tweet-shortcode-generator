@@ -70,9 +70,9 @@ const TweetBuilder = () => {
 		const shortcodeUsername = () => {
 			let result
 			if (includeUsername) {
-				result = ` via="${username}"`
+				result = ` username="${username}"`
 			} else {
-				result = ` via="no"`
+				result = ` username="no"`
 			}
 			return result
 		}
