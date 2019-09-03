@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react"
 import { string, func } from "prop-types"
+import ClipLoader from "react-spinners/ClipLoader"
+import Colors from "./colors"
 
 const BitlyLink = props => {
 	const [loading, setLoading] = useState(true)
@@ -34,16 +36,20 @@ const BitlyLink = props => {
 	}, [])
 
 	return (
-		<span className="p-r ml-4p" style={{ top: 1 }}>
+		<div className="content-well px-1 py-4p d-if ai-c jc-fs ml-1">
 			{loading ? (
-				"loading"
+				<ClipLoader
+					sizeUnit={"px"}
+					size={18}
+					color={Colors.primary}
+					css={{ animationDuration: "1.15s", borderWidth: "2px", margin: 0 }}
+				/>
 			) : (
 				<a href={displayLink} target="_blank" rel="noopener noreferrer">
 					{displayLink}
 				</a>
 			)}
-			{error && <span>error: {error}</span>}
-		</span>
+		</div>
 	)
 }
 
