@@ -1,34 +1,52 @@
 import React, { useState, useEffect, Fragment } from "react"
-import { string } from "prop-types"
 import { CopyToClipboard } from "react-copy-to-clipboard"
-import URLShortener from "./url_shortener"
+
+import BitlyLink from "./bitly_link"
 
 import { Icon } from "react-icons-kit"
 import { check } from "react-icons-kit/fa/check"
 
 const TweetBuilder = () => {
-	const [url, setUrl] = useState("")
 	const [tweet, setTweet] = useState("")
-	const [user, setUser] = useState("@StevenPHenke")
+
+	const [includeUrl, setIncludeUrl] = useState(false)
+	const [url, setUrl] = useState("")
+	const [useShortUrl, setUseShortUrl] = useState(false)
+	const [shortUrl, setShortUrl] = useState("")
+	const [shortUrlLength, setShortUrlLength] = useState(0)
+
+	const [includeUsername, setIncludeUsername] = useState(false)
+	const [username, setUsername] = useState("")
+
+	const [includePrompt, setIncludePrompt] = useState(false)
+	const [prompt, setPrompt] = useState("Click to Tweet")
+
 	const [copied, setCopied] = useState(false)
 	const [shortcode, setShortcode] = useState("")
-	const [includeUrl, setIncludeUrl] = useState(false)
-	const [includeHandle, setIncludeHandle] = useState(false)
 
-	const userLength = includeHandle ? user.length : 0
-	const tweetLength = tweet.length
-	const urlLength = includeUrl ? url.length : 0
-	const characterLimit = 280
-	const charactersRemaining =
-		characterLimit - tweetLength - urlLength - userLength - 3
+	const getUrlLength = () => {
+		let length
+		if (useShortUrl) {
+			length = shortUrlLength
+		} else if (includeUrl) {
+			length = url.length
+		} else {
+			length = 0
+		}
+		return length
+	}
 
-	let shortcodeElem = React.createRef()
+	const displayRemainingCharacters = () => {
+		const characterLimit = 280
+		const tweetLength = tweet.length
+		const usernameLength = includeUsername ? username.length : 0
 
-	useEffect(() => {
-		setShortcode(shortcodeElem.current.innerHTML)
-	})
+		return characterLimit - tweetLength - getUrlLength() - usernameLength
+	}
 
-	const characterLimitInidicator = () => {
+	const characterCountStatus = () => {
+		const charactersRemaining = displayRemainingCharacters()
+
 		if (charactersRemaining >= 15) {
 			return "status--ok"
 		} else if (charactersRemaining < 15 && charactersRemaining > 0) {
@@ -38,24 +56,38 @@ const TweetBuilder = () => {
 		}
 	}
 
-	const renderUrl = () => {
-		let result
-		if (includeUrl && url) {
-			result = ` url="${url}"`
-		} else {
-			result = ` url="no"`
+	const renderShortcodePreview = () => {
+		const shortcodeUrl = () => {
+			let result
+			if (includeUrl && url) {
+				result = ` url="${shortUrl ? shortUrl : url}"`
+			} else {
+				result = ` url="no"`
+			}
+			return result
 		}
-		return result
-	}
 
-	const renderUsername = () => {
-		let result
-		if (includeHandle) {
-			result = ` via="${user}"`
-		} else {
-			result = ` via="no"`
+		const shortcodeUsername = () => {
+			let result
+			if (includeUsername) {
+				result = ` via="${username}"`
+			} else {
+				result = ` via="no"`
+			}
+			return result
 		}
-		return result
+
+		const shortcodePrompt = () => {
+			let result
+			if (includePrompt) {
+				result = ` prompt="${prompt}"`
+			} else {
+				result = ""
+			}
+			return result
+		}
+
+		return `[bctt tweet="${tweet}"${shortcodeUrl()}${shortcodeUsername()}${shortcodePrompt()}]`
 	}
 
 	const renderCopyButtonText = () => {
@@ -70,66 +102,117 @@ const TweetBuilder = () => {
 		}
 	}
 
-	const updateUser = e => {
-		setUser(e.target.value)
-	}
-
 	const handleCopyClick = () => {
 		setCopied(true)
 		setTimeout(() => setCopied(false), 2500)
 	}
 
-	return (
-		<div>
-			<label className="mb-1">Tweet Body</label>
-			<textarea
-				value={tweet}
-				onChange={e => setTweet(e.target.value)}
-				className="mb-0"
-			/>
+	let shortcodeElem = React.createRef()
 
-			<div className={`character-count ${characterLimitInidicator()} mb-3`}>
+	useEffect(() => {
+		setShortcode(shortcodeElem.current.innerHTML)
+	})
+
+	const debug = false
+
+	return (
+		<div className="tweet-builder">
+			<label className="mb-1">Tweet Body</label>
+			<textarea value={tweet} onChange={e => setTweet(e.target.value)} />
+
+			<div className={`character-count ${characterCountStatus()} mb-1`}>
 				remaining characters:
-				<span className="ml-4p fw-b">{charactersRemaining}</span>
+				<span className="ml-4p fw-b">{displayRemainingCharacters()}</span>
 			</div>
 
-			<div className="d-f fd-r ai-c jc-fs mb-2">
+			<div className="d-f fd-r ai-c jc-fs my-2">
 				<input
 					type="checkbox"
-					id="showURL"
-					onChange={() => setIncludeUrl(!includeUrl)}
+					className="checkbox"
+					id="showUrl"
+					value={includeUrl}
+					checked={includeUrl}
+					onChange={() => setIncludeUrl(includeUrl ? false : true)}
 				/>
-				<label htmlFor="showURL">Show URL?</label>
+				<label htmlFor="showUrl">Include URL</label>
 			</div>
 
 			{includeUrl && (
-				<URLShortener setUrl={setUrl} url={url} className="mb-3" />
+				<div>
+					<input
+						type="text"
+						value={url}
+						onChange={e => setUrl(e.target.value)}
+						className="d-b w-100% mb-2"
+					/>
+					<div className="d-f ai-c">
+						<input
+							type="checkbox"
+							className="checkbox"
+							id="useShortUrl"
+							value={useShortUrl}
+							checked={useShortUrl}
+							onChange={() => setUseShortUrl(useShortUrl ? false : true)}
+						/>
+						<label htmlFor="useShortUrl">Shorten URL with Bit.ly</label>
+						{useShortUrl && (
+							<BitlyLink
+								url={url}
+								setShortUrl={setShortUrl}
+								setShortUrlLength={setShortUrlLength}
+							/>
+						)}
+					</div>
+				</div>
 			)}
 
-			<div className="d-f fd-r ai-c jc-fs mb-2">
+			<div className="d-f fd-r ai-c jc-fs my-2">
 				<input
 					type="checkbox"
-					id="showUser"
-					onChange={() => setIncludeHandle(!includeHandle)}
+					className="checkbox"
+					id="showUsername"
+					value={includeUsername}
+					checked={includeUsername}
+					onChange={() => setIncludeUsername(includeUsername ? false : true)}
 				/>
-				<label htmlFor="showUser">Show User?</label>
+				<label htmlFor="showUsername">Include username</label>
 			</div>
 
-			{includeHandle && (
+			{includeUsername && (
 				<input
-					className="d-b w-100% mb-3"
 					type="text"
-					value={user}
-					onChange={updateUser}
+					value={username}
+					onChange={e => setUsername(e.target.value)}
+					className="d-b w-100%"
+				/>
+			)}
+
+			<div className="d-f fd-r ai-c jc-fs my-2">
+				<input
+					type="checkbox"
+					className="checkbox"
+					id="showPrompt"
+					value={includePrompt}
+					checked={includePrompt}
+					onChange={() => setIncludePrompt(includePrompt ? false : true)}
+				/>
+				<label htmlFor="showPrompt">Custom prompt text</label>
+			</div>
+
+			{includePrompt && (
+				<input
+					type="text"
+					value={prompt}
+					onChange={e => setPrompt(e.target.value)}
+					className="d-b w-100%"
 				/>
 			)}
 
 			<div
-				className={`shortcode-preview ${!tweet ? "hidden" : "mb-2"}`}
+				className={`shortcode-preview ${!tweet ? "hidden" : "my-2"}`}
 				ref={shortcodeElem}
 			>
-				[bctt tweet="{tweet}"{renderUrl()}
-				{renderUsername()}]
+				{renderShortcodePreview()}
 			</div>
 
 			<CopyToClipboard text={shortcode} onCopy={handleCopyClick}>
@@ -139,12 +222,31 @@ const TweetBuilder = () => {
 					{renderCopyButtonText()}
 				</button>
 			</CopyToClipboard>
+
+			{debug && (
+				<div style={{ border: "1px solid hotpink" }} className="mt-4 p-3">
+					<span className="d-b">tweet: {tweet}</span>
+					<span className="d-b">
+						includeUrl: {includeUrl ? "true" : "false"}
+					</span>
+					<span className="d-b">url: {url}</span>
+					<span className="d-b">
+						useShortUrl: {useShortUrl ? "true" : "false"}
+					</span>
+					<span className="d-b">shortUrl: {shortUrl}</span>
+					<span className="d-b">
+						includeUsername: {includeUsername ? "true" : "false"}
+					</span>
+					<span className="d-b">username: {username}</span>
+					<span className="d-b">
+						includePrompt: {includePrompt ? "true" : "false"}
+					</span>
+					<span className="d-b">prompt: {prompt}</span>
+					<span className="d-b">shortcode: {shortcode}</span>
+				</div>
+			)}
 		</div>
 	)
-}
-
-TweetBuilder.propTypes = {
-	url: string,
 }
 
 export default TweetBuilder
