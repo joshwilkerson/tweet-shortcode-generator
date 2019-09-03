@@ -107,6 +107,20 @@ const TweetBuilder = () => {
 		setTimeout(() => setCopied(false), 2500)
 	}
 
+	const handleUpdateUrl = e => {
+		const tweet = e.target.value
+		setUrl(tweet)
+
+		if (tweet === "") {
+			setUseShortUrl(false)
+		}
+
+		if (shortUrl) {
+			setShortUrl("")
+			setUseShortUrl(false)
+		}
+	}
+
 	let shortcodeElem = React.createRef()
 
 	useEffect(() => {
@@ -142,16 +156,17 @@ const TweetBuilder = () => {
 					<input
 						type="text"
 						value={url}
-						onChange={e => setUrl(e.target.value)}
+						onChange={handleUpdateUrl}
 						className="d-b w-100% mb-2"
 					/>
 					<div className="d-f ai-c">
 						<input
 							type="checkbox"
-							className="checkbox"
+							className="checkbox checkbox-sm"
 							id="useShortUrl"
 							value={useShortUrl}
 							checked={useShortUrl}
+							disabled={!url}
 							onChange={() => setUseShortUrl(useShortUrl ? false : true)}
 						/>
 						<label htmlFor="useShortUrl">Shorten URL with Bit.ly</label>

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, Fragment } from "react"
+import React, { useState, useEffect } from "react"
 import { string, func } from "prop-types"
 
 const BitlyLink = props => {
@@ -34,7 +34,7 @@ const BitlyLink = props => {
 	}, [])
 
 	return (
-		<span className="p-r ml-4p" style={{ top: 2 }}>
+		<span className="p-r ml-4p" style={{ top: 1 }}>
 			{loading ? (
 				"loading"
 			) : (

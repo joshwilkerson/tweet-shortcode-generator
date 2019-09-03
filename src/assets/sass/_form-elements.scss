@@ -25,7 +25,7 @@ label {
 }
 
 
-[type="checkbox"] {
+.checkbox {
   position: absolute;
   left: -9999px;
 
@@ -66,13 +66,13 @@ label {
   }
 }
 
-[type="checkbox"]:not(:checked):hover {
+.checkbox:not(:checked):hover {
   &+ label:before {
     background: darken($gray_300, 4%);
   }
 }
 
-[type="checkbox"]:checked {
+.checkbox:checked {
   &+ label {
     &:before {
       background: $primary;
@@ -86,46 +86,42 @@ label {
   }
 }
 
+.checkbox:disabled {
+  &+ label {
+    color: $gray_500;
+    cursor: not-allowed;
 
+    &:before {
+      background: $gray_200 !important;
+      border-color: $gray_300 !important;
+      cursor: not-allowed;
+    }
 
+    &:after {
+      display: none;
+    }
+  }
+}
 
+.checkbox.checkbox-sm {
+  &+ label {
+    font-size: .95em;
 
-// /* checked mark aspect */
-// [type="checkbox"]:not(:checked) + label:after,
-// [type="checkbox"]:checked + label:after {
-//   content: '\2713\0020';
-//   transition: all .2s;
-//   font-family: 'Lucida Sans Unicode', 'Arial Unicode MS', Arial;
-// }
-// /* checked mark aspect changes */
-// [type="checkbox"]:not(:checked) + label:after {
-//   opacity: 0;
-//   transform: scale(0);
-// }
-// [type="checkbox"]:checked + label:after {
-//   opacity: 1;
-//   transform: scale(1);
-// }
-// /* disabled checkbox */
-// [type="checkbox"]:disabled:not(:checked) + label:before,
-// [type="checkbox"]:disabled:checked + label:before {
-//   box-shadow: none;
-//   border-color: #bbb;
-//   background-color: #ddd;
-// }
-// [type="checkbox"]:disabled:checked + label:after {
-//   color: #999;
-// }
-// [type="checkbox"]:disabled + label {
-//   color: #aaa;
-// }
-// /* accessibility */
-// [type="checkbox"]:checked:focus + label:before,
-// [type="checkbox"]:not(:checked):focus + label:before {
-//   border: 2px dotted blue;
-// }
-//
-// /* hover style just for information */
-// label:hover:before {
-//   border: 2px solid #4778d9!important;
-// }
+    &:before {
+      width: 1em;
+      height: 1em;
+      border-radius: 3px;
+    }
+
+    &:after {
+      width: calc(1em + 2px);
+      height: calc(1em + 2px);
+    }
+  }
+
+  &:checked {
+    &+ label:after {
+      transform: scale(.65);
+    }
+  }
+}
