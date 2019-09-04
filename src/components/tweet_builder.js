@@ -16,6 +16,8 @@ const TweetBuilder = () => {
 
 	const [includeUrl, setIncludeUrl] = useState(false)
 	const [url, setUrl] = useState("")
+	const urlFormatted = url.startsWith("http")
+
 	const [useShortUrl, setUseShortUrl] = useState(false)
 	const [shortUrl, setShortUrl] = useState("")
 	const [shortUrlLength, setShortUrlLength] = useState(0)
@@ -189,7 +191,7 @@ const TweetBuilder = () => {
 						type="text"
 						value={url}
 						onChange={handleUpdateUrl}
-						className="d-b w-100% mb-2"
+						className={`d-b w-100% mb-2 ${url && !urlFormatted && "error"}`}
 						placeholder="URL"
 					/>
 					<div className="d-f ai-c">
@@ -199,7 +201,7 @@ const TweetBuilder = () => {
 							id="useShortUrl"
 							value={useShortUrl}
 							checked={useShortUrl}
-							disabled={!url}
+							disabled={!urlFormatted}
 							onChange={() => setUseShortUrl(useShortUrl ? false : true)}
 						/>
 						<label htmlFor="useShortUrl">Shorten URL with Bit.ly</label>
@@ -211,6 +213,12 @@ const TweetBuilder = () => {
 							/>
 						)}
 					</div>
+
+					{url && !urlFormatted && (
+						<span className="d-b w-100% mt-2 alert alert--error">
+							URL must start with "http://" or "https:'//"
+						</span>
+					)}
 				</div>
 			)}
 
@@ -298,6 +306,9 @@ const TweetBuilder = () => {
 						includeUrl: {includeUrl ? "true" : "false"}
 					</span>
 					<span className="d-b">url: {url}</span>
+					<span className="d-b">
+						urlFormatted: {urlFormatted ? "true" : "false"}
+					</span>
 					<span className="d-b">
 						useShortUrl: {useShortUrl ? "true" : "false"}
 					</span>

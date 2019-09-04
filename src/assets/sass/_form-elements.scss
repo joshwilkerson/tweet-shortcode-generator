@@ -1,10 +1,14 @@
 input, textarea {
   border: 1px solid $gray_600;
-  border-radius: 2px;
+  border-radius: 4px;
   box-sizing: border-box;
 
   &:focus {
     border: 1px solid $primary;
+  }
+
+  &.error {
+    border: 1px solid $error;
   }
 }
 
