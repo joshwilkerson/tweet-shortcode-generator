@@ -1,0 +1,27 @@
+.alert {
+  background: $gray_300;
+  border: 1px solid $gray_400;
+  padding: .5em .65em;
+  display: inline-block;
+  border-radius: 4px;
+  font-size: .9em;
+  box-sizing: border-box;
+
+  &.alert--success {
+    background: adjust-color($success, $lightness: 35%, $saturation: -10%);
+    border-color: $success;
+    color: adjust-color($success, $lightness: -35%, $saturation: -20%);
+  }
+
+  &.alert--warning {
+    background: adjust-color($warning, $lightness: 35%, $saturation: -10%);
+    border-color: $warning;
+    color: adjust-color($warning, $lightness: -35%, $saturation: -20%);
+  }
+
+  &.alert--error {
+    background: adjust-color($error, $lightness: 28%, $saturation: -10%);
+    border-color: $error;
+    color: adjust-color($error, $lightness: -30%, $saturation: -20%);
+  }
+}

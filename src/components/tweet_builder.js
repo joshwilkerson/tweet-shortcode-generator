@@ -56,11 +56,11 @@ const TweetBuilder = () => {
 		const charactersRemaining = displayRemainingCharacters()
 
 		if (charactersRemaining >= 15) {
-			return "status--ok"
+			return "success"
 		} else if (charactersRemaining < 15 && charactersRemaining > 0) {
-			return "status--warning"
+			return "warning"
 		} else {
-			return "status--error"
+			return "error"
 		}
 	}
 
@@ -165,7 +165,7 @@ const TweetBuilder = () => {
 				placeholder="Paste tweet text here..."
 			/>
 
-			<div className={`character-count ${characterCountStatus()} mb-1`}>
+			<div className={`alert alert--${characterCountStatus()} mb-1`}>
 				remaining characters:
 				<span className="ml-4p fw-b">{displayRemainingCharacters()}</span>
 			</div>
