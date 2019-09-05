@@ -1,7 +1,7 @@
 import React from "react"
 import { Icon } from "react-icons-kit"
 import { twitter } from "react-icons-kit/fa/twitter"
-import Colors from "./colors"
+import Colors from "./utils/colors"
 
 const Intro = () => {
 	return (

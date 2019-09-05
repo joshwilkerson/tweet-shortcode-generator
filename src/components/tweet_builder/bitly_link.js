@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react"
 import { string, func } from "prop-types"
 import ClipLoader from "react-spinners/ClipLoader"
-import Colors from "./colors"
+import Colors from "../utils/colors"
 
 const BitlyLink = props => {
 	const [loading, setLoading] = useState(true)
@@ -49,6 +49,7 @@ const BitlyLink = props => {
 					{displayLink}
 				</a>
 			)}
+			{error && <div className="alert alert--error">{error}</div>}
 		</div>
 	)
 }

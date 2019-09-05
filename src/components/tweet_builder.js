@@ -1,7 +1,7 @@
 import React, { useState, useEffect, Fragment } from "react"
 import { CopyToClipboard } from "react-copy-to-clipboard"
 
-import BitlyLink from "./bitly_link"
+import BitlyLink from "./tweet_builder/bitly_link"
 
 import { Icon } from "react-icons-kit"
 import { check } from "react-icons-kit/fa/check"
