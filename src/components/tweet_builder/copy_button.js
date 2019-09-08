@@ -1,6 +1,7 @@
 import React, { Fragment, useState } from "react"
 import { string } from "prop-types"
 import { CopyToClipboard } from "react-copy-to-clipboard"
+import { Button } from "../shared_elements"
 import { Icon } from "react-icons-kit"
 import { check } from "react-icons-kit/fa/check"
 
@@ -28,12 +29,12 @@ const CopyButton = props => {
 	return (
 		<Fragment>
 			<CopyToClipboard text={shortcode} onCopy={handleCopyClick}>
-				<button
-					className={`btn btn-lg ${copied ? "btn-success" : "btn-primary"}`}
+				<Button
+					text={renderCopyButtonText()}
+					theme={copied ? "success" : "primary"}
+					size="md"
 					disabled={!tweet}
-				>
-					{renderCopyButtonText()}
-				</button>
+				/>
 			</CopyToClipboard>
 		</Fragment>
 	)

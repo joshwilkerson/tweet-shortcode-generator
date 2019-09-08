@@ -38,3 +38,27 @@
     background: adjust-color($success, $lightness: 10%);
   }
 }
+
+.btn-error {
+  background: adjust-color($error, $lightness: 4%);
+  border: 1px solid $error;
+
+  &:hover {
+    background: adjust-color($error, $lightness: 8%);
+  }
+}
+
+.btn-lg {
+  padding: .6em .8em;
+  font-size: 1.1em;
+}
+
+.btn-md {
+  padding: .5em .7em;
+  font-size: 1em;
+}
+
+.btn-sm {
+  padding: .4em .65em;
+  font-size: .875em;
+}
