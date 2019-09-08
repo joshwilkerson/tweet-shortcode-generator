@@ -22,7 +22,6 @@ const BitlyLink = props => {
 
 				props.setShortUrl(shortUrl)
 				setDisplayLink(shortUrl)
-				props.setShortUrlLength(shortUrl.length)
 				setLoading(false)
 			})
 			.catch(error => {
@@ -57,7 +56,6 @@ const BitlyLink = props => {
 BitlyLink.propTypes = {
 	url: string,
 	setShortUrl: func,
-	setShortUrlLength: func,
 }
 
 export default BitlyLink

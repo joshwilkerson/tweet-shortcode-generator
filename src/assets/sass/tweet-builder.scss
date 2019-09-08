@@ -11,3 +11,21 @@
     opacity: 0;
   }
 }
+
+.debug {
+  border: 1px solid hotpink;
+  background: rgba(hotpink, .2);
+  border-radius: 4px;
+  box-sizing: border-box;
+  display: block;
+  padding: 1em;
+  font-size: .95em;
+
+  p {
+    margin: 0 0 .75em 0;
+
+    &:last-child {
+      margin: 0;
+    }
+  }
+}
