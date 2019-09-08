@@ -13,6 +13,7 @@ const PromptText = props => {
 				onChange={e => setPromptText(e.target.value)}
 				className="d-b w-100%"
 				placeholder="Enter custom prompt text"
+				autoFocus
 			/>
 		</div>
 	)

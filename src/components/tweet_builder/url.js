@@ -26,6 +26,7 @@ const URL = props => {
 					onChange={e => setUrl(e.target.value)}
 					className={`d-b w-100% mb-2`}
 					placeholder="URL"
+					autoFocus
 				/>
 				<div className="d-f ai-c">
 					<input

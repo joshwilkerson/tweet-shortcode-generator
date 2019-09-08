@@ -44,6 +44,7 @@ const Username = props => {
 					onChange={handleUpdateUsername}
 					className="d-b w-100%"
 					placeholder="Username"
+					autoFocus
 				/>
 				<div className="mt-2">
 					<input

@@ -37,6 +37,7 @@ const TweetBuilder = () => {
 				value={tweet}
 				onChange={e => setTweet(e.target.value)}
 				placeholder="Paste tweet text here..."
+				autoFocus
 			/>
 
 			<DisplayRemainingCharacters tweet={tweet} url={url} username={username} />
