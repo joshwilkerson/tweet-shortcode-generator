@@ -30,6 +30,16 @@
   }
 }
 
+.btn-secondary {
+  background: $gray_300;
+  border: 1px solid $gray_400;
+  color: $gray_700;
+
+  &:hover {
+    background: adjust-color($gray_300, $lightness: 2%);
+  }
+}
+
 .btn-success {
   background: adjust-color($success, $lightness: 5%);
   border: 1px solid $success;
@@ -61,4 +71,9 @@
 .btn-sm {
   padding: .4em .65em;
   font-size: .875em;
+}
+
+.btn-tiny {
+  padding: .35em .5em .3em .5em;
+  font-size: .8em;
 }

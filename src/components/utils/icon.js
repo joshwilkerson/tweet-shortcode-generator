@@ -17,8 +17,8 @@ const Icon = props => {
 	console.dir(props.style)
 
 	const styles = {
-		width: props.size ? `${props.size}px` : "1em",
-		height: props.size ? `${props.size}px` : "1em",
+		width: props.size && `${props.size}px`,
+		height: props.size && `${props.size}px`,
 		fill: props.color ? props.color : "currentColor",
 		...props.style,
 	}

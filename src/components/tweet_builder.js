@@ -31,7 +31,7 @@ const TweetBuilder = () => {
 	const debug = false
 
 	return (
-		<div className="tweet-builder">
+		<div className="tweet-builder p-4 pt-0">
 			<label className="mb-1">Tweet Body</label>
 			<textarea
 				value={tweet}

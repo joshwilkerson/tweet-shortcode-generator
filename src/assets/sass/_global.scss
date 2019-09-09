@@ -3,14 +3,15 @@ body {
 	font-size: 100%;
 	font-family: 'Raleway', sans-serif;
 	background: $gray_100;
+	color: $gray_800;
 }
 
 .wrapper {
 	background: #fff;
 	width: 90%;
 	margin: 2em auto;
-	padding: 1.5em;
 	border-radius: 4px;
+	overflow: hidden;
 }
 
 .content-well {
@@ -33,4 +34,10 @@ body {
 			color: adjust-color($primary, $lightness: -3%);
 		}
 	}
+}
+
+.icon {
+	display: inline-block;
+	width: 1em;
+	height: 1em;
 }

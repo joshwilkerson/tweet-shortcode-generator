@@ -1,0 +1,30 @@
+nav {
+  background: $primary;
+  padding: .5em .75em;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+
+  a {
+    color: #fff;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    padding: .25em;
+    color: rgba(#fff, .75);
+    transition: .2s all ease;
+
+    &:hover,
+    &.active {
+      color: #fff;
+    }
+
+    .icon {
+      height: 16px;
+      width: 16px;
+      position: relative;
+      top: -1px;
+      margin: 0 4px 0 0;
+    }
+  }
+}

@@ -10,7 +10,7 @@ const BitlyLink = props => {
 	const encodedUrl = encodeURIComponent(props.url)
 
 	const getShortURL = () => {
-		const token = process.env.API_TOKEN
+		const token = localStorage.getItem("bctt_API_key")
 		const basePath = "https://api-ssl.bitly.com/v3/shorten"
 
 		let fetchURL = `${basePath}?access_token=${token}&longUrl=${encodedUrl}&format=json`

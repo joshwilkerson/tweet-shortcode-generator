@@ -4,7 +4,7 @@ import Icon from "./utils/icon"
 
 const Intro = () => {
 	return (
-		<div>
+		<div className="d-b p-4">
 			<div className="d-f ai-c mb-3">
 				<Icon
 					symbol="twitter"

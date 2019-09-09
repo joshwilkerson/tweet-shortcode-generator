@@ -1,13 +1,17 @@
 import React, { Fragment, useState, useEffect } from "react"
 import { func } from "prop-types"
+import { Link } from "react-router-dom"
 
 import BitlyLink from "./bitly_link"
 
 const URL = props => {
+	const ls_API_key = localStorage.getItem("bctt_API_key")
+
 	const [url, setUrl] = useState("")
 	const [useShortUrl, setUseShortUrl] = useState(false)
 	const [shortUrl, setShortUrl] = useState("")
 
+	const hasAPIKey = ls_API_key && ls_API_key != "" ? true : false
 	const urlFormatted = url.startsWith("http://") || url.startsWith("https://")
 
 	const debug = false
@@ -39,7 +43,16 @@ const URL = props => {
 						onChange={() => setUseShortUrl(useShortUrl ? false : true)}
 					/>
 					<label htmlFor="useShortUrl">Shorten URL with Bit.ly</label>
-					{useShortUrl && <BitlyLink url={url} setShortUrl={setShortUrl} />}
+					{!hasAPIKey && (
+						<span className="d-ib w-a alert alert--warning ml-1">
+							Bit.ly unavailable. To enbale, add your Generic API Key in{" "}
+							<Link to="/settings">settings</Link>
+						</span>
+					)}
+
+					{useShortUrl && hasAPIKey && (
+						<BitlyLink url={url} setShortUrl={setShortUrl} />
+					)}
 				</div>
 
 				{url && !urlFormatted && (
