@@ -18,7 +18,7 @@ const Home = () => {
 
 const App = () => {
 	return (
-		<BrowserRouter>
+		<BrowserRouter basename="/tweet-shortcode-generator">
 			<Layout>
 				<Nav />
 

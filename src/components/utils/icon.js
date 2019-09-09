@@ -14,8 +14,6 @@ const icons = {
 const Icon = props => {
 	const symbol = icons[`${props.symbol}`]
 
-	console.dir(props.style)
-
 	const styles = {
 		width: props.size && `${props.size}px`,
 		height: props.size && `${props.size}px`,
