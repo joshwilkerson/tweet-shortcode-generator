@@ -20,7 +20,7 @@ export const Checkbox = props => {
 }
 
 Checkbox.propTypes = {
-	value: string,
+	value: bool,
 	id: string,
 	label: string,
 	onChange: func,

@@ -2,8 +2,7 @@ import React, { Fragment, useState } from "react"
 import { string } from "prop-types"
 import { CopyToClipboard } from "react-copy-to-clipboard"
 import { Button } from "../shared_elements"
-import { Icon } from "react-icons-kit"
-import { check } from "react-icons-kit/fa/check"
+import Icon from "../utils/icon"
 
 const CopyButton = props => {
 	const { shortcode, tweet } = props
@@ -13,7 +12,13 @@ const CopyButton = props => {
 		if (copied) {
 			return (
 				<Fragment>
-					Copied <Icon icon={check} />
+					Copied{" "}
+					<Icon
+						symbol="check"
+						size={14}
+						className="p-r ml-2p"
+						style={{ top: 1 }}
+					/>
 				</Fragment>
 			)
 		} else {
@@ -27,16 +32,14 @@ const CopyButton = props => {
 	}
 
 	return (
-		<Fragment>
-			<CopyToClipboard text={shortcode} onCopy={handleCopyClick}>
-				<Button
-					text={renderCopyButtonText()}
-					theme={copied ? "success" : "primary"}
-					size="md"
-					disabled={!tweet}
-				/>
-			</CopyToClipboard>
-		</Fragment>
+		<CopyToClipboard text={shortcode} onCopy={handleCopyClick}>
+			<Button
+				text={renderCopyButtonText()}
+				theme={copied ? "success" : "primary"}
+				size="md"
+				disabled={!tweet}
+			/>
+		</CopyToClipboard>
 	)
 }
 
