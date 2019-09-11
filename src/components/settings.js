@@ -1,5 +1,6 @@
 import React, { useState } from "react"
 import { Button } from "./shared_elements"
+import { Route } from "react-router-dom"
 
 const Settings = () => {
 	const ls_API_key = localStorage.getItem("bctt_API_key")
@@ -16,13 +17,19 @@ const Settings = () => {
 				className="w-100% d-b mb-1"
 				onChange={e => setAPIKey(e.target.value)}
 			/>
-
-			<Button
-				size="md"
-				text="Save"
-				theme="success"
-				className="mr-4p"
-				onClick={() => localStorage.setItem("bctt_API_key", APIKey)}
+			<Route
+				render={({ history }) => (
+					<Button
+						size="md"
+						text="Save"
+						theme="success"
+						className="mr-4p"
+						onClick={() => {
+							localStorage.setItem("bctt_API_key", APIKey)
+							history.push("/")
+						}}
+					/>
+				)}
 			/>
 		</div>
 	)
