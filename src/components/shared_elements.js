@@ -1,4 +1,5 @@
-import React from "react"
+import React, { Fragment } from "react"
+import ClipLoader from "react-spinners/ClipLoader"
 import { string, func, bool, object, oneOfType } from "prop-types"
 
 export const Checkbox = props => {
@@ -27,7 +28,16 @@ Checkbox.propTypes = {
 }
 
 export const Button = props => {
-	const { disabled, text, theme, onClick, size, className, ...rest } = props
+	const {
+		disabled = false,
+		text,
+		theme = "primary",
+		onClick,
+		size = "md",
+		className,
+		isLoading = false,
+		...rest
+	} = props
 
 	return (
 		<button
@@ -36,7 +46,16 @@ export const Button = props => {
 			className={`btn btn-${theme} btn-${size} ${className ? className : ""}`}
 			onClick={onClick}
 		>
-			{text}
+			{isLoading ? (
+				<ClipLoader
+					sizeUnit={"em"}
+					size={1}
+					color={"#fff"}
+					css={{ animationDuration: "1.15s", borderWidth: "2px", margin: 0 }}
+				/>
+			) : (
+				<Fragment>{text}</Fragment>
+			)}
 		</button>
 	)
 }
@@ -48,9 +67,5 @@ Button.propTypes = {
 	onClick: func,
 	size: string,
 	className: string,
-}
-
-Button.defaultProps = {
-	theme: "primary",
-	size: "md",
+	isLoading: bool,
 }
